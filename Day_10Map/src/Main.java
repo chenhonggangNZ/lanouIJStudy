@@ -22,28 +22,39 @@ public class Main {
         map.put("name","lisi");
         map.put("gender","nv");
         map.put("age","14");
-        Map m = new HashMap();
+        Map map1 = new HashMap();
         //put方法，向map中添加信息
         //括号中接收两个参数
         //第一个参数标表示key（键）
         //第二个参数表示value（值）
-        m.put("name","王五");
-        m.put("gender","男");
-        m.put("age","11");
+        map1.put("name","王五");
+        map1.put("gender","男");
+        map1.put("age","11");
+              firstMain(map1);
+//              second(map1);
+//            iterate(map, entry);
+
+
+    }
+
+    private static void firstMain(Map map1) {
         System.out.println("开始遍历了。");
-//        System.out.println(m.get("name"));
-        for (Object o : m.keySet()){
-            //m.keySet就是将map中的所有的key拿出来
+//        System.out.println(map1.get("name"));
+        for (Object o : map1.keySet()){
+            //map1.keySet就是将map中的所有的key拿出来
             //增强for，也叫foreach
             //冒号后，就是接收一个集合
             //也就是接收了一堆数据
-            System.out.println(m.get(o).toString());
+            System.out.println(o +map1.get(o).toString());
 
         }
+    }
+
+    private static void second(Map map1) {
         System.out.println("遍历map的第二种方式");
         //获得M这个map中的所有键值对
         //放进了这个set的集合中
-        Set set = m.entrySet();
+//        Set set = map1.entrySet();
         /*
         collection是一个接口
         list和set都是collection的子接口
@@ -52,9 +63,9 @@ public class Main {
         List: 有序（通过脚标找元素），可重复
         set：无需，不可重复
          */
-        for (Object o : m.entrySet()) {
-            //一个Entry的实现类对象，就表示一个键值对
-            //可以使用这个对象，获得key和value
+        for (Object o : map1.entrySet()) {
+        //一个Entry的实现类对象，就表示一个键值对
+        //可以使用这个对象，获得key和value
 
             Map.Entry entry = (Map.Entry) o;
             System.out.println("key的值为" + entry.getKey() + "---value的值为：" +entry.getValue());
@@ -62,15 +73,24 @@ public class Main {
         }
 
 
+    }
 
 
+    private static void iterate(Map map, Map.Entry entry) {
+        //迭代器
+        System.out.println("开始使用迭代器遍历集合");
+        Iterator iterator = map.entrySet().iterator();
+        while (iterator.hasNext()){
+            //如果有下一个，则返回true，进入到while循环
+            //获得的对象，是object类型的
+            //父类的以及用next，只能使用父类的方法
+            //无法使用子类独有的方法
+            Object next = iterator.next();
+            //所以要把next强转成子类
+            Map.Entry entry01 = (Map.Entry) next;
+            System.out.println("key的值为" + entry.getKey() + "---value的值为：" +entry.getValue());
 
-
-
-
-
-
-
+        }
     }
 
 
